@@ -1,0 +1,15 @@
+services:
+  db:
+    image: postgres:17-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres@123
+      POSTGRES_DB: songs_db
+    volumes:
+      - postgres:/var/lib/postgresql/data
+volumes:
+  postgres:
+    name: nestjs-songs-db
