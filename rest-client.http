@@ -4,7 +4,7 @@ GET http://localhost:3000
 GET http://localhost:3000/songs
 
 ### Find SONGS REQUEST
-GET http://localhost:3000/songs/1
+GET http://localhost:3000/songs/3
 
 ### Create New SONGS REQUEST
 POST http://localhost:3000/songs
@@ -24,7 +24,16 @@ Content-Type: application/json
 
 
 ### Update SONGS REQUEST
-PUT http://localhost:3000/songs/1
+PUT http://localhost:3000/songs/3
+Content-Type: application/json
+
+{
+"title": "You for Me 3",
+"artists": ["Siagla", "Yan", "Ny"],
+"releasedDate": "2022-09-30",
+"duration": "02:45",
+"lyrics": "Sby, you're my adrenaline. Brought out this other side of me Yo don't even I wanted you for me I dance to every song like it's aboutya I drink 'til I kiss someone who looks like ya"
+}
 
 ### Update SONGS REQUEST
-DELETE http://localhost:3000/songs/1
+DELETE http://localhost:3000/songs/4

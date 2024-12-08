@@ -17,6 +17,6 @@ export class SongEntity {
   @Column({ type: 'time' })
   duration: Date;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text', nullable: true })
   lyrics: string;
 }

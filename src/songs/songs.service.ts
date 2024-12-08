@@ -1,13 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { CreateSongDTO } from './dtos/create-song.dto';
 import { SongEntity } from './songs.entity';
 
 @Injectable()
 export class SongsService {
-  // local db
-  // local array
-
   constructor(
     // Inject song repository into songs service
     // SongRepository provides CRUD methods to create, delete, update, and fetch records from the Songs table
@@ -15,18 +13,30 @@ export class SongsService {
     private songsRepository: Repository<SongEntity>,
   ) {}
 
-  private readonly songs = [];
+  async create(songDTO: CreateSongDTO): Promise<SongEntity> {
+    const song = new SongEntity();
+    song.title = songDTO.title;
+    song.artists = songDTO.artists;
+    song.duration = songDTO.duration;
+    song.lyrics = songDTO.lyrics;
+    song.releasedDate = songDTO.releasedDate;
 
-  create(song) {
-    // Save the song in the database
-    this.songs.push(song);
-    return this.songs;
+    return this.songsRepository.save(song);
   }
 
   findAll() {
-    // fetch the songs from the db
-    // Errors comes while fetching the data from DB
-    // throw new Error('Error in Db whil fetching record');
-    return this.songs;
+    return this.songsRepository.find();
+  }
+
+  findOne(id: SongEntity['id']) {
+    return this.songsRepository.findOneBy({ id });
+  }
+
+  delete(id: SongEntity['id']) {
+    return this.songsRepository.delete(id);
+  }
+
+  update(id: SongEntity['id'], song: CreateSongDTO) {
+    return this.songsRepository.update(id, song);
   }
 }
