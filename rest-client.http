@@ -3,6 +3,9 @@ GET http://localhost:3000
 ### SEND FETCH SONGS REQUEST
 GET http://localhost:3000/songs
 
+### Pagniation
+GET http://localhost:3000/songs/?page=1&limit=10
+
 ### Find SONGS REQUEST
 GET http://localhost:3000/songs/3
 
