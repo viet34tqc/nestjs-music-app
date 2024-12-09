@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { CreateSongDTO } from './dtos/create-song.dto';
-import { SongEntity } from './songs.entity';
+import { SongEntity } from './song.entity';
 import { SongsService } from './songs.service';
 
 @Controller('songs')

@@ -3,11 +3,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { ArtistEntity } from './artists/artist.entity';
 import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { LoggerModule } from './common/middleware/logger/logger.module';
+import { SongEntity } from './songs/song.entity';
 import { SongsController } from './songs/songs.controller';
-import { SongEntity } from './songs/songs.entity';
 import { SongsModule } from './songs/songs.module';
+import { UserEntity } from './users/user.entity';
 
 @Module({
   imports: [
@@ -20,7 +22,7 @@ import { SongsModule } from './songs/songs.module';
       username: 'postgres',
       password: 'postgres@123',
       database: 'songs_db',
-      entities: [SongEntity],
+      entities: [SongEntity, ArtistEntity, UserEntity],
       synchronize: true,
     }),
   ],
