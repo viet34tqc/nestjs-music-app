@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { PlaylistEntity } from 'src/playlists/playlist.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('users')
 export class UserEntity {
@@ -16,4 +17,10 @@ export class UserEntity {
 
   @Column()
   password: string;
+
+  // (playlist) => playlist.user is inverse side
+  // This is crucial for TypeORM to understand how the two entities
+  // Here, it indicates that each playlist instance has a property called user
+  @OneToMany(() => PlaylistEntity, (playlist) => playlist.user)
+  playlists: PlaylistEntity[];
 }

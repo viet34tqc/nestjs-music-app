@@ -38,5 +38,16 @@ Content-Type: application/json
 "lyrics": "Sby, you're my adrenaline. Brought out this other side of me Yo don't even I wanted you for me I dance to every song like it's aboutya I drink 'til I kiss someone who looks like ya"
 }
 
-### Update SONGS REQUEST
+### DELETE SONG
 DELETE http://localhost:3000/songs/4
+
+### CREATE PLAYLIST
+
+POST http://localhost:3000/playlists
+Content-Type: application/json
+
+{
+"name": "Feel Good Now",
+"songs": [3],
+"user": 1
+}
