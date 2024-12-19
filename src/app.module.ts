@@ -12,6 +12,8 @@ import { SongsController } from './songs/songs.controller';
 import { SongsModule } from './songs/songs.module';
 import { UserEntity } from './users/user.entity';
 import { PlaylistsModule } from './playlists/playlists.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -30,6 +32,8 @@ import { PlaylistsModule } from './playlists/playlists.module';
       synchronize: true,
     }),
     PlaylistsModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

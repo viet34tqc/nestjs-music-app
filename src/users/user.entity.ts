@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { PlaylistEntity } from 'src/playlists/playlist.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -12,10 +13,11 @@ export class UserEntity {
   @Column()
   lastName: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   // (playlist) => playlist.user is inverse side
