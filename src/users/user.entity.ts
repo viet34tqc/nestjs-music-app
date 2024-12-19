@@ -16,6 +16,8 @@ export class UserEntity {
   @Column({ unique: true })
   email: string;
 
+  // Exclude password from the response
+  // Need @UseInterceptors(ClassSerializerInterceptor) in the controller
   @Column()
   @Exclude()
   password: string;

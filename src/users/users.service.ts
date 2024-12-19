@@ -12,22 +12,19 @@ export class UsersService {
     private usersRepository: Repository<UserEntity>,
   ) {}
 
-  async signup(dto: CreateUserDto) {
+  async signup(userDto: CreateUserDto) {
     // generate password hash
-    const hash = await argon2.hash(dto.password);
+    const hash = await argon2.hash(userDto.password);
 
     try {
       // create new user
       const user = this.usersRepository.create({
-        email: dto.email,
         password: hash,
+        ...userDto,
       });
 
       // save user to db
-      await this.usersRepository.save(user);
-
-      // return saved user
-      return user;
+      return this.usersRepository.save(user);
     } catch (error) {
       // duplicate email error from Postgres
       if (error.code === '23505') {
