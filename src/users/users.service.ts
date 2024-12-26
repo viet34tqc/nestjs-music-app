@@ -1,4 +1,9 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  ClassSerializerInterceptor,
+  ForbiddenException,
+  Injectable,
+  UseInterceptors,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as argon2 from '@node-rs/argon2';
 import { CreateUserDto } from 'src/auth/dto/create-user.dto';
@@ -18,13 +23,15 @@ export class UsersService {
 
     try {
       // create new user
-      const user = this.usersRepository.create({
-        password: hash,
+      const user = await this.usersRepository.save({
         ...userDto,
+        password: hash,
       });
 
+      delete user.password;
+
       // save user to db
-      return this.usersRepository.save(user);
+      return user;
     } catch (error) {
       // duplicate email error from Postgres
       if (error.code === '23505') {
@@ -32,5 +39,15 @@ export class UsersService {
       }
       throw error;
     }
+  }
+
+  @UseInterceptors(ClassSerializerInterceptor)
+  async findOne(email: string) {
+    const user = await this.usersRepository.findOneBy({ email });
+    // If user doesn't exist throw exception
+    if (!user) {
+      throw new ForbiddenException('Invalid credentials');
+    }
+    return user;
   }
 }

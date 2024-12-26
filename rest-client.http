@@ -58,8 +58,23 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-"firstName": "jhg432ohgn",
+"firstName": "viet",
 "lastName": "doe",
-"email": "324fdsggfhhgsn@ghmail.com",
+"email": "viet34fdsffd5@ghmail.com",
 "password": "123456"
 }
+
+### Login User
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+"email": "viet34@ghmail.com",
+"password": "123456"
+}
+
+### Test protected route
+
+GET http://localhost:3000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIzLCJlbWFpbCI6InZpZXQzNEBnaG1haWwuY29tIiwiaWF0IjoxNzM1MjI5OTYxLCJleHAiOjE3MzUzMTYzNjF9.E_9spu0ZGbMmoAjpn7yEcbNlF4iRMTv_ZOxwWTr97ss
+
