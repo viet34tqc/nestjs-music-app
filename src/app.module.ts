@@ -15,6 +15,7 @@ import { SongsController } from './songs/songs.controller';
 import { SongsModule } from './songs/songs.module';
 import { UserEntity } from './users/user.entity';
 import { UsersModule } from './users/users.module';
+import { ArtistsModule } from './artists/artists.module';
 
 @Module({
   imports: [
@@ -38,6 +39,7 @@ import { UsersModule } from './users/users.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    ArtistsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -10,8 +10,10 @@ import {
   ParseIntPipe,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { Pagination } from 'nestjs-typeorm-paginate';
+import { JWTArtistGuard } from 'src/auth/guards/jwtArtist.guard';
 import { CreateSongDTO } from './dtos/create-song.dto';
 import { SongEntity } from './song.entity';
 import { SongsService } from './songs.service';
@@ -20,6 +22,7 @@ import { SongsService } from './songs.service';
 export class SongsController {
   constructor(private songsService: SongsService) {}
   @Post()
+  @UseGuards(JWTArtistGuard)
   create(@Body() createSongDTO: CreateSongDTO): Promise<SongEntity> {
     return this.songsService.create(createSongDTO);
   }

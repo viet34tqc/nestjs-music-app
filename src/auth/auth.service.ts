@@ -1,7 +1,9 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as argon2 from '@node-rs/argon2';
+import { ArtistsService } from 'src/artists/artists.service';
 import { UsersService } from 'src/users/users.service';
+import { AuthPayload } from './auth.types';
 import { LoginDTO } from './dto/login.dto';
 
 @Injectable()
@@ -9,6 +11,7 @@ export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
+    private artistsService: ArtistsService,
   ) {}
   async login(loginDto: LoginDTO) {
     // Find user by email
@@ -25,18 +28,21 @@ export class AuthService {
       throw new ForbiddenException('Invalid credentials');
     }
 
-    // Generate JWT token
-    const token = await this.jwtService.signAsync({
-      sub: user.id,
+    const artist = await this.artistsService.findArtist(user.id);
+    const payload: AuthPayload = {
+      userId: user.id,
       email: user.email,
-    });
+      ...(artist && { artistId: artist.id }),
+    };
+
+    // Generate JWT token
+    const token = await this.jwtService.signAsync(payload);
 
     delete user.password;
 
     // Return user and token
     return {
-      access_token: token,
-      user,
+      accessToken: token,
     };
   }
 }

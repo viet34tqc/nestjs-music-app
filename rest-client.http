@@ -12,6 +12,7 @@ GET http://localhost:3000/songs/3
 ### Create New SONGS REQUEST
 POST http://localhost:3000/songs
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJlbWFpbCI6InZpZXQzNEBnaG1haWwuY29tIiwiaWF0IjoxNzM2MDA0NTIzLCJleHAiOjE3MzYwOTA5MjN9.barfZhttb6Ijrst48UQP3ltecF5ia0gIUaBG4nzLv6A
 
 {
 "title": "lasting lover",
