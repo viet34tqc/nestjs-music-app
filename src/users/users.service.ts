@@ -8,6 +8,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import * as argon2 from '@node-rs/argon2';
 import { CreateUserDto } from 'src/auth/dto/create-user.dto';
 import { Repository } from 'typeorm';
+import { v4 as uuid4 } from 'uuid';
 import { UserEntity } from './user.entity';
 
 @Injectable()
@@ -25,6 +26,7 @@ export class UsersService {
       // create new user
       const user = await this.usersRepository.save({
         ...userDto,
+        apiKey: uuid4(),
         password: hash,
       });
 
@@ -49,5 +51,9 @@ export class UsersService {
       throw new ForbiddenException('Invalid credentials');
     }
     return user;
+  }
+
+  async findByApiKey(apiKey: string): Promise<UserEntity> {
+    return this.usersRepository.findOneBy({ apiKey });
   }
 }

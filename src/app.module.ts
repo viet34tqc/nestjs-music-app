@@ -5,6 +5,7 @@ import { DataSource } from 'typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ArtistEntity } from './artists/artist.entity';
+import { ArtistsModule } from './artists/artists.module';
 import { AuthModule } from './auth/auth.module';
 import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 import { LoggerModule } from './common/middleware/logger/logger.module';
@@ -15,7 +16,6 @@ import { SongsController } from './songs/songs.controller';
 import { SongsModule } from './songs/songs.module';
 import { UserEntity } from './users/user.entity';
 import { UsersModule } from './users/users.module';
-import { ArtistsModule } from './artists/artists.module';
 
 @Module({
   imports: [

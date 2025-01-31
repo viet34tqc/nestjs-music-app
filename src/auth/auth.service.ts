@@ -5,6 +5,7 @@ import { ArtistsService } from 'src/artists/artists.service';
 import { UsersService } from 'src/users/users.service';
 import { AuthPayload } from './auth.types';
 import { LoginDTO } from './dto/login.dto';
+import { UserEntity } from 'src/users/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -44,5 +45,9 @@ export class AuthService {
     return {
       accessToken: token,
     };
+  }
+
+  async validateUserByApiKey(apiKey: string): Promise<UserEntity> {
+    return this.usersService.findByApiKey(apiKey);
   }
 }

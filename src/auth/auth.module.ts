@@ -6,6 +6,7 @@ import { ArtistsModule } from 'src/artists/artists.module';
 import { UsersModule } from 'src/users/users.module';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
+import { ApiKeyStrategy } from './strategy/apiKey.strategy';
 import { JwtStrategy } from './strategy/jwt.strategy';
 
 @Module({
@@ -22,7 +23,7 @@ import { JwtStrategy } from './strategy/jwt.strategy';
       inject: [ConfigService],
     }),
   ],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, ApiKeyStrategy],
   controllers: [AuthController],
 })
 export class AuthModule {}

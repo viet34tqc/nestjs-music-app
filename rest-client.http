@@ -61,7 +61,7 @@ Content-Type: application/json
 {
 "firstName": "viet",
 "lastName": "doe",
-"email": "viet34fdsffd5@ghmail.com",
+"email": "xfdsxvx@ghmail.com",
 "password": "123456"
 }
 
@@ -76,6 +76,6 @@ Content-Type: application/json
 
 ### Test protected route
 
-GET http://localhost:3000/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIzLCJlbWFpbCI6InZpZXQzNEBnaG1haWwuY29tIiwiaWF0IjoxNzM1MjI5OTYxLCJleHAiOjE3MzUzMTYzNjF9.E_9spu0ZGbMmoAjpn7yEcbNlF4iRMTv_ZOxwWTr97ss
+GET http://localhost:3000/auth/profile
+Authorization: Bearer b89812f0-e7a5-4970-9ec6-c3dcf01c2c7c
 
