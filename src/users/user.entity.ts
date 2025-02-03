@@ -25,6 +25,9 @@ export class UserEntity {
   @Column({ nullable: true })
   apiKey: string;
 
+  @Column()
+  phone: string;
+
   // (playlist) => playlist.user is inverse side
   // This is crucial for TypeORM to understand how the two entities relate to each other
   // Here, it indicates that each playlist instance has a property called user
