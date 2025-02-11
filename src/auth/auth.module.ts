@@ -17,9 +17,10 @@ import { JwtStrategy } from './strategy/jwt.strategy';
     // To use ConfigService in JwtModule, we need to use registerAsync()
     JwtModule.registerAsync({
       useFactory: (configService: ConfigService) => ({
-        secret: configService.get<string>('JWT_SECRET'),
+        secret: configService.get('jwtSecret'),
         signOptions: { expiresIn: '1d' },
       }),
+      // makes sure the ConfigService is available to use in the factory function.
       inject: [ConfigService],
     }),
   ],

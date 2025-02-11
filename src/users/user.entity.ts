@@ -25,7 +25,7 @@ export class UserEntity {
   @Column({ nullable: true })
   apiKey: string;
 
-  @Column()
+  @Column({ nullable: true })
   phone: string;
 
   // (playlist) => playlist.user is inverse side
