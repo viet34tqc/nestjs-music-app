@@ -14,6 +14,7 @@ import { PlaylistsModule } from './playlists/playlists.module';
 import { SongsController } from './songs/songs.controller';
 import { SongsModule } from './songs/songs.module';
 import { UsersModule } from './users/users.module';
+import { validate } from '../env.validation';
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { UsersModule } from './users/users.module';
     UsersModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env.development'],
+      envFilePath: ['.env.development', '.env.production'],
+      validate,
       load: [commonConfiguration, databaseConfiguration],
     }),
     ArtistsModule,
