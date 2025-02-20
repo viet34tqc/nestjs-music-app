@@ -79,3 +79,8 @@ Content-Type: application/json
 GET http://localhost:3000/auth/profile
 Authorization: Bearer b89812f0-e7a5-4970-9ec6-c3dcf01c2c7c
 
+### Test protected route
+
+GET http://localhost:3000/auth/profileWithApiKey
+Authorization: Bearer b89812f0-e7a5-4970-9ec6-c3dcf01c2c7c
+
