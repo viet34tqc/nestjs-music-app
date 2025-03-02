@@ -27,7 +27,7 @@ import { validate } from '../env.validation';
     UsersModule,
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env.development', '.env.production'],
+      envFilePath: [`${process.cwd()}/.env.${process.env.NODE_ENV}`],
       validate,
       load: [commonConfiguration, databaseConfiguration],
     }),
